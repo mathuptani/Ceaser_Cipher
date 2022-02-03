@@ -32,22 +32,28 @@ while repeat == 'yes':
   eMsg = ""
   dMsg = ""
   if crypt == 'encode': #encryption of message
-      for letter in msg:
-          rePos = alphaPos(letter)
-          enPos = rePos + shift
-          if enPos > 26:
-            enPos = enPos - 26
-          eMsg += alphabets[enPos]
+        for letter in msg:
+            if letter in alphabets:    
+              rePos = alphaPos(letter)
+              enPos = rePos + shift
+              if enPos > 26:
+                enPos = enPos - 26
+              eMsg += alphabets[enPos]
+            else:
+                eMsg += letter
       print(eMsg)
   elif crypt == 'decrypt': #decryption of message
       for letter in msg:
-          rePos = alphaPos(letter)
-          dePos = rePos - shift
-          if dePos < 0:
-            dePos = 26 + dePos
-          else:
-            dePos = dePos
-          dMsg += alphabets[dePos]
+            if letter in alphabets:
+              rePos = alphaPos(letter)
+              dePos = rePos - shift
+              if dePos < 0:
+                dePos = 26 + dePos
+              else:
+                dePos = dePos
+              dMsg += alphabets[dePos]
+            else:
+                dMsg += letter
       print(dMsg)
 
   repeat = input("You wanna cipher/decipher a message? Types yes or no:\n").lower() #whether to repeat the loop or not
